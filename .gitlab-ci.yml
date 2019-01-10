@@ -1,0 +1,55 @@
+stages:
+  - vet
+  - test
+  - build
+
+format:
+  stage: vet
+  image: grauwoelfchen/rust-ci-tools:nightly
+  before_script:
+    - rustc --version
+    - cargo --version
+    - cargo fmt --version
+  script:
+    - make vet:format
+  except:
+    - tags
+
+lint:
+  stage: vet
+  image: grauwoelfchen/rust-ci-tools:nightly
+  before_script:
+    - rustc --version
+    - cargo --version
+    - cargo clippy --version
+  script:
+    - make vet:lint
+  except:
+    - tags
+
+test:
+  stage: test
+  image: grauwoelfchen/rust-ci-tools:nightly
+  before_script:
+    - rustc --version
+    - cargo --version
+    - kcov --version
+  script:
+    - make test:coverage
+  after_script:
+    - cat target/coverage/index.json
+  except:
+    - tags
+
+build:
+  stage: build
+  image: grauwoelfchen/rust:latest
+  before_script:
+    - rustc --version
+    - cargo --version
+  script:
+    - make build
+  cache:
+    untracked: true
+  only:
+    - tags

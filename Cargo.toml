@@ -1,0 +1,16 @@
+[package]
+name = "overlap"
+version = "0.0.1"
+authors = ["Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>"]
+description = "awk '{d[$1]++} END {for (n in d) {print n,d[n]}}' < FILE"
+repository = "https://gitlab.com/grauwoelfchen/overlap"
+keywords = []
+license = "Apache-2.0"
+
+[[bin]]
+name = "overlap"
+path = "src/main.rs"
+
+[dependencies]
+clippy = { version = "^0.0.212", optional = true }
+structopt = { version = "0.2.10", default-features = false }

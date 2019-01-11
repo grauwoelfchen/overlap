@@ -7,6 +7,10 @@ repository = "https://gitlab.com/grauwoelfchen/overlap"
 keywords = []
 license = "Apache-2.0"
 
+[lib]
+name = "overlap"
+path = "src/lib.rs"
+
 [[bin]]
 name = "overlap"
 path = "src/main.rs"

@@ -7,12 +7,15 @@ vet\:check:  ## Check rust syntax
 	cargo check --all -v
 .PHONY: vet\:check
 
-vet\:format:  ## Check format without changes [alias: vet:fmt, fmt]
+vet\:format:  ## Check format without changes [alias: vet:fmt, format, fmt]
 	cargo fmt --all -- --check
 .PHONY: vet\:format
 
 vet\:fmt: | vet\:format
 .PHONY: vet\:fmt
+
+format: | vet\:format
+.PHONY: format
 
 fmt: | vet\:format
 .PHONY: fmt

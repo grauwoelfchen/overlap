@@ -15,38 +15,56 @@ Check ``make help``
 
 .. code:: zsh
 
-   # debug build
-   % make build
+   : debug build
+   % make build:debug
 
+
+Development
+-----------
+
+Vet
+~~~
+
+.. code:: zsh
+
+   : check code using all vet:xxx targets
+   % make vet:all
 
 Test
-----
+~~~~
+
+.. code:: zsh
+
+   % make test
+
+Coverage
+~~~~~~~~
 
 `cov` requires kcov.
 
 .. code:: zsh
 
-   % make test
-   % make cov
+   : (optional)
+   % .tools/setup-kcov
 
+   % make coverage
 
 CI
---
+~~
 
-Run ci job in local conatiners
+Run CI jobs on local conatiner.
 
 .. code:: zsh
 
-   # install gitlab-runner into .tools
+   : install gitlab-runner into .tools
    % .tools/setup-gitlab-runner
 
-   # e.g. test
+   : e.g. test (see .gitlab-ci.yml)
    % .tools/ci-runner test
 
 
 License
 -------
-
 
 .. code:: text
 

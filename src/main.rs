@@ -3,44 +3,61 @@
 //! # Examples
 //!
 //! ```zsh
-//! % overlap --help
+//! % overlap --file FILE --file FILE
 //! ```
-extern crate structopt;
+use std::path::Path;
 
-extern crate overlap;
-
-use structopt::StructOpt;
+extern crate clap;
+use clap::{Arg, App};
 
 mod config;
 use config::Config;
 
-/// command options.
-#[derive(StructOpt)]
-#[structopt(
-    name = "overlap",
-    about = "\nawk '{d[$1]++} END {for (n in d) {print n,d[n]}}' < FILE"
-)]
-pub struct Opts {
-    /// Filename
-    #[structopt(short = "f", long = "file")]
-    file: String,
+fn read(file: &str) {
+    let s = overlap::read_file(file);
+    match s {
+        Ok(content) => {
+            // TODO
+            overlap::print(&content);
+        },
+        Err(e) => panic!(e),
+    };
 }
 
 fn main() {
-    let opts = Opts::from_args();
+    let matches = App::new("Overlap")
+        .version("0.0.1")
+        .arg(
+            Arg::with_name("file")
+                .long("file")
+                .short("f")
+                .value_name("FILE")
+                .help("Set a file path")
+                .multiple(true)
+                .required(true)
+                .takes_value(true),
+        )
+        .get_matches();
 
-    let c = Config::new(opts);
+    let mut files: Vec<String> = vec![];
+    if let Some(v) = matches.values_of("file") {
+        for file in v {
+            if !Path::new(file).exists() {
+                eprintln!("No such file: {}", file);
+                std::process::exit(1);
+            } else {
+                files.push(file.to_string());
+            }
+        }
+    }
+
+    let c = Config::new();
     if !c.is_valid() {
         eprintln!("Usage: overlap [<OPTION>] <FILE> <FILE> ...");
         std::process::exit(1);
     }
 
-    let s = overlap::read_file(&c.file);
-    match s {
-        Ok(content) => {
-            // TODO
-            overlap::print(&content)
-        },
-        Err(e) => panic!(e),
-    };
+    for file in files {
+        read(&file);
+    }
 }

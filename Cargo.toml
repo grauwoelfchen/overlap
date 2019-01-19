@@ -16,5 +16,4 @@ name = "overlap"
 path = "src/main.rs"
 
 [dependencies]
-clippy = { version = "^0.0.212", optional = true }
-structopt = { version = "0.2.10", default-features = false }
+clap = { version = "2.32.0" }

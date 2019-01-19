@@ -14,6 +14,14 @@ Repository
 https://gitlab.com/grauwoelfchen/overlap
 
 
+Usage
+-----
+
+.. code:: zsh
+
+   % overlap --file FILE --file FILE --file FILE ...
+
+
 Build
 -----
 

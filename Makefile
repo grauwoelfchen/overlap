@@ -7,34 +7,45 @@ vet\:check:  ## Check rust syntax
 	cargo check --all -v
 .PHONY: vet\:check
 
-vet\:format:  ## Check format without changes (alias: vet:fmt)
+vet\:format:  ## Check format without changes [alias: vet:fmt, fmt]
 	cargo fmt --all -- --check
 .PHONY: vet\:format
 
 vet\:fmt: | vet\:format
 .PHONY: vet\:fmt
 
-vet\:lint:  ## Check code style using clippy
+fmt: | vet\:format
+.PHONY: fmt
+
+vet\:lint:  ## Check style using clippy [alias: lint]
 	cargo clippy --all-targets
 .PHONY: vet\:lint
 
+lint: | vet\:lint
+.PHONY: lint
+
+vet\:all: | vet\:check vet\:format vet\:lint  ## Check code using all vet:xxx targets
+.PHONY: vet\:all
+
 # test
 
-test:  ## Run unit tests and integration tests
-	cargo test
+test\:all:  ## Run unit tests and integration tests [alias: test]
+	cargo test --tests
+.PHONY: test\:all
+
+test: | test\:all
 .PHONY: test
 
-test\:coverage:  ## Generate coverage report of unit tests using kcov (alias: test:cov)
+# coverage
+
+coverage:  ## Generate coverage report of unit tests using kcov [alias: cov]
 	cargo test --bin overlap --no-run
 	./.tools/check-kcov overlap kcov
-.PHONY: test\:coverage
-
-test\:cov: | test\:coverage
-.PHONY: test\:cov
+.PHONY: coverage
 
 # document
 
-document:  ## Generate documentation files (alias: doc)
+document:  ## Generate documentation files [alias: doc]
 	cargo rustdoc -- -Z --display-warnings
 .PHONY: document
 
@@ -43,8 +54,11 @@ doc: | document
 
 # build
 
-build:  ## Run debug build
+build\:debug:  ## Run debug build [alias: build]
 	cargo build
+.PHONY: build\:debug
+
+build: | build\:debug
 .PHONY: build
 
 build\:release:  ## Create release build
@@ -53,7 +67,7 @@ build\:release:  ## Create release build
 
 # other utilities
 
-clean:  ## Clean up
+clean:  ## Tidy up
 	cargo clean
 .PHONY: clean
 
@@ -64,5 +78,5 @@ help:  ## Display this message
 	  sort
 .PHONY: help
 
-.DEFAULT_GOAL = help
-default: help
+.DEFAULT_GOAL = test\:all
+default: test\:all

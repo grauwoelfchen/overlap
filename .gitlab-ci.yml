@@ -35,7 +35,7 @@ test:
     - cargo --version
     - kcov --version
   script:
-    - make test:coverage
+    - make coverage
   after_script:
     - cat target/coverage/index.json
   except:
@@ -48,7 +48,7 @@ build:
     - rustc --version
     - cargo --version
   script:
-    - make build
+    - make build:debug
   cache:
     untracked: true
   only:

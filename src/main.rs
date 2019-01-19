@@ -7,6 +7,7 @@
 //! ```
 use std::path::Path;
 
+#[macro_use]
 extern crate clap;
 use clap::{Arg, App};
 
@@ -26,13 +27,13 @@ fn read(file: &str) {
 
 fn main() {
     let matches = App::new("Overlap")
-        .version("0.0.1")
+        .version(crate_version!())
         .arg(
             Arg::with_name("file")
                 .long("file")
                 .short("f")
                 .value_name("FILE")
-                .help("Set a file path")
+                .help("Sets a file path")
                 .multiple(true)
                 .required(true)
                 .takes_value(true),

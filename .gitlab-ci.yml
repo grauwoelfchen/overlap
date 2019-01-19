@@ -3,6 +3,17 @@ stages:
   - test
   - build
 
+check:
+  stage: vet
+  image: grauwoelfchen/rust-ci-tools:nightly
+  before_script:
+    - rustc --version
+    - cargo --version
+  script:
+    - make vet:check
+  except:
+    - tags
+
 format:
   stage: vet
   image: grauwoelfchen/rust-ci-tools:nightly
@@ -35,6 +46,7 @@ test:
     - cargo --version
     - kcov --version
   script:
+    # test & get covered
     - KCOV_PATH=kcov make coverage
   after_script:
     - cat target/coverage/index.json

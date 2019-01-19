@@ -78,7 +78,7 @@ clean:  ## Tidy up
 help:  ## Display this message
 	@grep -E '^[0-9a-z\:\\]+: ' $(MAKEFILE_LIST) | grep -E '  ## ' | \
 	  sed -e 's/\(\s|\(\s[0-9a-z\:\\]*\)*\)  /  /' | tr -d \\\\ | \
-	  awk 'BEGIN {FS = ":  ## "}; {printf "\033[36m%-14s\033[0m %s\n", $$1, $$2}' | \
+	  awk 'BEGIN {FS = ":  ## "}; {printf "\033[38;5;222m%-13s\033[000m %s\n", $$1, $$2}' | \
 	  sort
 .PHONY: help
 

@@ -64,4 +64,17 @@ build:
   cache:
     untracked: true
   only:
+    - master
+
+release:
+  stage: build
+  image: grauwoelfchen/rust:latest
+  before_script:
+    - rustc --version
+    - cargo --version
+  script:
+    - make build:release
+  cache:
+    untracked: true
+  only:
     - tags

@@ -1,14 +1,11 @@
 # vet
 
-vet: | vet\:check vet\:format vet\:lint  ## Run all vet targets
-.PHONY: vet
-
 vet\:check:  ## Check rust syntax
-	cargo check --all -v
+	@cargo check --all -v
 .PHONY: vet\:check
 
 vet\:format:  ## Check format without changes [alias: vet:fmt, format, fmt]
-	cargo fmt --all -- --check
+	@cargo fmt --all -- --check
 .PHONY: vet\:format
 
 vet\:fmt: | vet\:format
@@ -21,19 +18,22 @@ fmt: | vet\:format
 .PHONY: fmt
 
 vet\:lint:  ## Check style using clippy [alias: lint]
-	cargo clippy --all-targets
+	@cargo clippy --all-targets
 .PHONY: vet\:lint
 
 lint: | vet\:lint
 .PHONY: lint
 
-vet\:all: | vet\:check vet\:format vet\:lint  ## Check code using all vet:xxx targets
+vet\:all: | vet\:check vet\:format vet\:lint  ## Check code using all vet:xxx targets [alias: vet]
 .PHONY: vet\:all
+
+vet: | vet\:all
+.PHONY: vet
 
 # test
 
 test\:all:  ## Run unit tests and integration tests [alias: test]
-	cargo test --tests
+	@cargo test --tests
 .PHONY: test\:all
 
 test: | test\:all
@@ -42,8 +42,9 @@ test: | test\:all
 # coverage
 
 coverage:  ## Generate coverage report of unit tests using kcov [alias: cov]
-	cargo test --bin overlap --no-run
-	./.tools/check-kcov overlap kcov
+	@cargo test --bin overlap --no-run
+	@./.tools/setup-kcov
+	./.tools/get-covered overlap
 .PHONY: coverage
 
 # document
@@ -71,7 +72,7 @@ build\:release:  ## Create release build
 # other utilities
 
 clean:  ## Tidy up
-	cargo clean
+	@cargo clean
 .PHONY: clean
 
 help:  ## Display this message

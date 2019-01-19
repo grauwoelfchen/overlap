@@ -40,7 +40,7 @@ fn main() {
         Ok(content) => {
             // TODO
             overlap::print(&content)
-        }
+        },
         Err(e) => panic!(e),
     };
 }

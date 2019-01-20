@@ -99,6 +99,9 @@ See ``.gitlab-ci.yml``.
    : install gitlab-runner into .tools
    % .tools/setup-gitlab-runner
 
+   : prepare environment variables for CI via .env.ci
+   % cp .env.ci.sample .env
+
    : e.g. test (see .gitlab-ci.yml)
    % .tools/ci-runner test
 

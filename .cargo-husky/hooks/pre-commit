@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -ex
+
+# vet:check, vet:format and vet:lint
+echo '+make vet:all'
+make vet:all
+
+echo '+make test:all'
+make test:all

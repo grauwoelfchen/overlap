@@ -3,55 +3,56 @@ stages:
   - test
   - build
 
-check:
-  stage: vet
+.ci-tools: &ci-tools
   image: grauwoelfchen/rust-ci-tools:nightly
-  before_script:
-    - rustc --version
-    - cargo --version
-  script:
-    - make vet:check
   except:
     - tags
 
+check:
+  stage: vet
+  <<: *ci-tools
+  before_script:
+    - rustc --version
+    - cargo --version
+    - mkdir -p .git/hooks
+  script:
+    - make vet:check
+
 format:
   stage: vet
-  image: grauwoelfchen/rust-ci-tools:nightly
+  <<: *ci-tools
   before_script:
     - rustc --version
     - cargo --version
     - cargo fmt --version
+    - mkdir -p .git/hooks
   script:
     - make vet:format
-  except:
-    - tags
 
 lint:
   stage: vet
-  image: grauwoelfchen/rust-ci-tools:nightly
+  <<: *ci-tools
   before_script:
     - rustc --version
     - cargo --version
     - cargo clippy --version
+    - mkdir -p .git/hooks
   script:
     - make vet:lint
-  except:
-    - tags
 
 test:
   stage: test
-  image: grauwoelfchen/rust-ci-tools:nightly
+  <<: *ci-tools
   before_script:
     - rustc --version
     - cargo --version
     - kcov --version
+    - mkdir -p .git/hooks
   script:
     # test & get covered
     - KCOV_PATH=kcov make coverage
   after_script:
     - cat target/coverage/index.json
-  except:
-    - tags
 
 build:
   stage: build
@@ -59,6 +60,7 @@ build:
   before_script:
     - rustc --version
     - cargo --version
+    - mkdir -p .git/hooks
   script:
     - make build:debug
   cache:
@@ -72,6 +74,7 @@ release:
   before_script:
     - rustc --version
     - cargo --version
+    - mkdir -p .git/hooks
   script:
     - make build:release
   cache:

@@ -28,6 +28,7 @@ fn read(file: &str) {
 fn main() {
     let matches = App::new("Overlap")
         .version(crate_version!())
+        .about("A tool shows overlap text in files")
         .arg(
             Arg::with_name("file")
                 .long("file")

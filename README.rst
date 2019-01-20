@@ -8,6 +8,15 @@ Overlap
    :target: https://gitlab.com/grauwoelfchen/overlap/commits/master
 
 
+A tool shows overlap text in files.
+
+It works almost same as:
+
+.. code:: zsh
+
+   % awk '{d[$1]++} END {for (n in d) {print n,d[n]}}' < FILE
+
+
 Repository
 ----------
 

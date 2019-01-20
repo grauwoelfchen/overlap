@@ -91,7 +91,8 @@ Coverage
 CI
 ~~
 
-Run CI jobs on local conatiner.
+Run CI jobs on local docker conatiner (Gentoo Linux) using gitlab-runner.  
+See ``.gitlab-ci.yml``.
 
 .. code:: zsh
 

@@ -3,4 +3,7 @@
 /.tools/kcov
 /.tools/gitlab-runner
 
+# development
+*.txt
+
 .env.ci

@@ -14,17 +14,6 @@ use clap::{Arg, App};
 mod config;
 use config::Config;
 
-fn read(file: &str) {
-    let s = overlap::read_file(file);
-    match s {
-        Ok(content) => {
-            // TODO
-            overlap::print(&content);
-        },
-        Err(e) => panic!(e),
-    };
-}
-
 fn main() {
     let matches = App::new("Overlap")
         .version(crate_version!())
@@ -59,7 +48,13 @@ fn main() {
         std::process::exit(1);
     }
 
-    for file in files {
-        read(&file);
+    // TODO: use config
+
+    let text = overlap::read_files(files);
+    if !text.is_empty() {
+        let result = overlap::overlap(text);
+        if !result.is_empty() {
+            println!("{}", result);
+        }
     }
 }

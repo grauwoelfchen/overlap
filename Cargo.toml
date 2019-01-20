@@ -2,7 +2,7 @@
 name = "overlap"
 version = "0.0.1"
 authors = ["Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>"]
-description = "awk '{d[$1]++} END {for (n in d) {print n,d[n]}}' < FILE"
+description = "a tool shows overlap text in files"
 repository = "https://gitlab.com/grauwoelfchen/overlap"
 keywords = []
 license = "Apache-2.0"

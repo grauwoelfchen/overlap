@@ -14,7 +14,8 @@ It works almost same as:
 
 .. code:: zsh
 
-   % awk '{d[$1]++} END {for (n in d) {print n,d[n]}}' < FILE
+   % find a.txt b.txt | xargs  cat | \
+   > awk -F '\n' '{d[$1]++} END {for (n in d) {print n,d[n]}}' | grep 2 | cut -d ' ' -f 1
 
 
 Repository
@@ -30,6 +31,21 @@ Usage
 
    % overlap --file FILE --file FILE --file FILE ...
 
+There is an example.
+
+.. code:: zsh
+
+   % cat a.txt
+   Hoi!
+   Hoi Zäme!
+   Grüezi wohl!
+   % cat b.txt
+   Hallo!
+   Moin moin!
+   Grüezi mitenand!
+   Hoi!
+   % overlap --file a.txt --file b.txt
+   Hoi!
 
 Build
 -----

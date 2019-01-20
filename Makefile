@@ -41,11 +41,14 @@ test: | test\:all
 
 # coverage
 
-coverage:  ## Generate coverage report of unit tests using kcov [alias: cov]
-	@cargo test --bin overlap --no-run
+coverage:  ## Generate coverage report of unit tests only for lib using kcov [alias: cov]
+	@cargo test --lib overlap --no-run
 	@./.tools/setup-kcov
 	./.tools/get-covered overlap
 .PHONY: coverage
+
+cov: | coverage
+.PHONY: cov
 
 # document
 

@@ -47,6 +47,9 @@ There is an example.
    % overlap --file a.txt --file b.txt
    Hoi!
 
+About other options, take a look ``overlap --help``.
+
+
 Build
 -----
 

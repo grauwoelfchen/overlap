@@ -5,6 +5,9 @@ use std::path::Path;
 use std::sync::{Arc, Mutex};
 use std::thread;
 
+mod config;
+pub use config::Config;
+
 mod line;
 use line::Line;
 
@@ -61,7 +64,7 @@ pub fn read_files(files: Vec<String>) -> String {
 }
 
 /// Returns overlap lines.
-pub fn overlap(text: String) -> String {
+pub fn overlap(text: String, c: &Config) -> String {
     let mut lines: Vec<Line> = vec![];
 
     // counting up
@@ -84,8 +87,13 @@ pub fn overlap(text: String) -> String {
 
     let mut result: Vec<String> = vec![];
     for line in lines {
-        if line.count() > 1 {
-            result.push(line.text());
+        if line.count() > 1 && !line.text().is_empty() {
+            let mut s = String::new();
+            s.push_str(&line.text());
+            if c.with_count {
+                s.push_str(&format!(" {}", line.count()));
+            }
+            result.push(s);
         }
     }
     result.join("\n")
@@ -103,10 +111,19 @@ mod tests {
 
     #[test]
     fn test_overlap_returns_only_overlap_texts() {
+        let c = Config::new(false);
+
         let text = "Hoi\nZäme!\nHoi\n".to_string();
-        assert_eq!("Hoi", overlap(text));
+        assert_eq!("Hoi", overlap(text, &c));
 
         let text = "Hoi\nZäme!\n".to_string();
-        assert_eq!("", overlap(text));
+        assert_eq!("", overlap(text, &c));
+    }
+
+    #[test]
+    fn test_overlap_returns_with_count() {
+        let text = "Hoi\nZäme!\nHoi\n".to_string();
+        let c = Config::new(true);
+        assert_eq!("Hoi 2", overlap(text, &c))
     }
 }

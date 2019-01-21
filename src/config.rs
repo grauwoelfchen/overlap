@@ -3,8 +3,8 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new() -> Self {
-        Config { with_count: false }
+    pub fn new(with_count: bool) -> Self {
+        Config { with_count }
     }
 
     pub fn is_valid(&self) -> bool {

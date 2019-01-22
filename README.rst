@@ -24,6 +24,14 @@ Repository
 https://gitlab.com/grauwoelfchen/overlap
 
 
+Installation
+------------
+
+.. code:: zsh
+
+   % make install
+
+
 Usage
 -----
 

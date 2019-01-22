@@ -53,7 +53,7 @@ cov: | coverage
 # document
 
 document:  ## Generate documentation files [alias: doc]
-	cargo rustdoc -- -Z --display-warnings
+	@cargo rustdoc -- -Z --display-warnings
 .PHONY: document
 
 doc: | document

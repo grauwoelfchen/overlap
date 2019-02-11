@@ -1,3 +1,7 @@
+Tue 12 Feb 2019 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Remove unnecessary mutability
+	* Update metadata in Cargo.toml
+
 Mon 21 Jan 2019 Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Fix make coverage (only for unit tests for lib)
 	* Add initial implementation of overlap function

@@ -11,9 +11,6 @@ use std::path::Path;
 extern crate clap;
 use clap::{Arg, App};
 
-mod config;
-use config::Config;
-
 fn main() {
     let matches = App::new("Overlap")
         .version(crate_version!())
@@ -27,6 +24,12 @@ fn main() {
                 .multiple(true)
                 .required(true)
                 .takes_value(true),
+        )
+        .arg(
+            Arg::with_name("with_count")
+                .long("with-count")
+                .short("c")
+                .help("Shows text with overlap count"),
         )
         .get_matches();
 
@@ -42,7 +45,7 @@ fn main() {
         }
     }
 
-    let c = Config::new();
+    let c = overlap::Config::new(matches.is_present("with_count"));
     if !c.is_valid() {
         eprintln!("Usage: overlap [<OPTION>] <FILE> <FILE> ...");
         std::process::exit(1);
@@ -52,7 +55,7 @@ fn main() {
 
     let text = overlap::read_files(files);
     if !text.is_empty() {
-        let result = overlap::overlap(text);
+        let result = overlap::overlap(text, &c);
         if !result.is_empty() {
             println!("{}", result);
         }

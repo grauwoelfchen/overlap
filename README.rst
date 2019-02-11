@@ -24,6 +24,14 @@ Repository
 https://gitlab.com/grauwoelfchen/overlap
 
 
+Installation
+------------
+
+.. code:: zsh
+
+   % make install
+
+
 Usage
 -----
 
@@ -46,6 +54,9 @@ There is an example.
    Hoi!
    % overlap --file a.txt --file b.txt
    Hoi!
+
+About other options, take a look ``overlap --help``.
+
 
 Build
 -----

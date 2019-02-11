@@ -66,6 +66,15 @@ Check `make help`
 % make build:debug
 ```
 
+```zsh
+% docker build -t grauwoelfchen/overlap:latest .
+% docker container run -i --rm \
+  -v $(pwd)/tmp \
+  grauwoelfchen/overlap:latest \
+  --file /tmp/a.txt --file /tmp/b.txt
+Hoi!
+```
+
 
 ## Development
 

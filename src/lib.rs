@@ -66,7 +66,7 @@ pub fn overlap(text: String) -> String {
 
     // counting up
     for s in text.lines() {
-        let mut line = Line::new(s);
+        let line = Line::new(s);
 
         // this sorting is needed for searching
         lines.sort();

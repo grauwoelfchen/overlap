@@ -15,6 +15,12 @@ license = "Apache-2.0"
 exclude = [
   "benches/*",
   "tests/*",
+  ".tools/*",
+  ".cargo-husky/*",
+  "/.clippy.toml",
+  "/.rustfmt.toml",
+  "/.gitlab-ci.yml",
+  "/.env.ci.sample",
 ]
 edition = "2018"
 

@@ -8,7 +8,7 @@ A tool shows overlap text in files
 documentation = "https://gitlab.com/grauwoelfchen/overlap"
 repository = "https://gitlab.com/grauwoelfchen/overlap"
 homepage = "https://gitlab.com/grauwoelfchen/overlap"
-readme = "README.rst"
+readme = "README.md"
 keywords = ["cli", "text"]
 categories = ["command-line-utilities", "text-processing"]
 license = "Apache-2.0"

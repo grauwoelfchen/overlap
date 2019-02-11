@@ -1,4 +1,5 @@
 Tue 12 Feb 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Change format README.rst to README.md :'(
 	* Remove unnecessary mutability
 	* Update metadata in Cargo.toml
 

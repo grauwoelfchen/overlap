@@ -2,14 +2,24 @@
 name = "overlap"
 version = "0.0.1"
 authors = ["Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net>"]
-description = "a tool shows overlap text in files"
+description = """
+A tool shows overlap text in files
+"""
+documentation = "https://gitlab.com/grauwoelfchen/overlap"
 repository = "https://gitlab.com/grauwoelfchen/overlap"
-keywords = []
+homepage = "https://gitlab.com/grauwoelfchen/overlap"
+readme = "README.rst"
+keywords = ["cli", "text"]
+categories = ["command-line-utilities", "text-processing"]
 license = "Apache-2.0"
 exclude = [
   "benches/*",
   "tests/*",
 ]
+edition = "2018"
+
+[badges]
+gitlab = { repository = "grauwoelfchen/overlap", branch = "master" }
 
 [lib]
 name = "overlap"
@@ -18,6 +28,9 @@ path = "src/lib.rs"
 [[bin]]
 name = "overlap"
 path = "src/main.rs"
+
+[profile.release]
+panic = "abort"
 
 [dependencies]
 clap = { version = "2.32.0" }

@@ -1,9 +1,9 @@
 Tue 12 Feb 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Add Dockerfile
+	* Change format README.rst to README.md :'(
 
 	* Release 0.0.1
 
-	* Change format README.rst to README.md :'(
 	* Remove unnecessary mutability
 	* Update metadata in Cargo.toml
 

@@ -78,6 +78,10 @@ clean:  ## Tidy up
 	@cargo clean
 .PHONY: clean
 
+package:  ## Create package
+	@cargo package
+.PHONY: package
+
 help:  ## Display this message
 	@grep -E '^[0-9a-z\:\\]+: ' $(MAKEFILE_LIST) | grep -E '  ## ' | \
 	  sed -e 's/\(\s|\(\s[0-9a-z\:\\]*\)*\)  /  /' | tr -d \\\\ | \

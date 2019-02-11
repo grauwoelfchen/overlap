@@ -6,6 +6,10 @@ description = "a tool shows overlap text in files"
 repository = "https://gitlab.com/grauwoelfchen/overlap"
 keywords = []
 license = "Apache-2.0"
+exclude = [
+  "benches/*",
+  "tests/*",
+]
 
 [lib]
 name = "overlap"

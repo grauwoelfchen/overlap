@@ -1,8 +1,11 @@
 # vet
 
-vet\:check:  ## Check rust syntax
+vet\:check:  ## Check rust syntax [alias: check]
 	@cargo check --all -v
 .PHONY: vet\:check
+
+check: | vet\:check
+.PHONY: check
 
 vet\:format:  ## Check format without changes [alias: vet:fmt, format, fmt]
 	@cargo fmt --all -- --check

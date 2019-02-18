@@ -1,3 +1,6 @@
+Tue 19 Feb 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
+	* Update Makefile (add test:unit, test:integration)
+
 Tue 12 Feb 2019 Yasuhiro Яша Asaka <yasuhiro.asaka@grauwoelfchen.net>
 	* Release 0.0.2
 

@@ -1,5 +1,4 @@
-# vet
-
+# vet -- {{{
 vet\:check:  ## Check rust syntax [alias: check]
 	@cargo check --all -v
 .PHONY: vet\:check
@@ -32,8 +31,16 @@ vet\:all: | vet\:check vet\:format vet\:lint  ## Check code using all vet:xxx ta
 
 vet: | vet\:all
 .PHONY: vet
+# }}}
 
-# test
+# test -- {{{
+test\:unit:  ## Run unit tests
+	@cargo test --lib overlap
+.PHONY: test\:unit
+
+test\:integration:  ## Run integration tests
+	@cargo test --test integration_test
+.PHONY: test\:integration
 
 test\:all:  ## Run unit tests and integration tests [alias: test]
 	@cargo test --tests
@@ -41,9 +48,9 @@ test\:all:  ## Run unit tests and integration tests [alias: test]
 
 test: | test\:all
 .PHONY: test
+# }}}
 
-# coverage
-
+# coverage -- {{{
 coverage:  ## Generate coverage report of unit tests only for lib using kcov [alias: cov]
 	@cargo test --lib overlap --no-run
 	@./.tools/setup-kcov
@@ -52,18 +59,18 @@ coverage:  ## Generate coverage report of unit tests only for lib using kcov [al
 
 cov: | coverage
 .PHONY: cov
+# }}}
 
-# document
-
+# document -- {{{
 document:  ## Generate documentation files [alias: doc]
 	@cargo rustdoc -- -Z --display-warnings
 .PHONY: document
 
 doc: | document
 .PHONY: doc
+# }}}
 
-# build
-
+# build -- {{{
 build\:debug:  ## Run debug build [alias: build]
 	cargo build
 .PHONY: build\:debug
@@ -74,9 +81,9 @@ build: | build\:debug
 build\:release:  ## Create release build
 	cargo build --release
 .PHONY: build\:release
+# }}}
 
-# other utilities
-
+# other utilities -- {{{
 clean:  ## Tidy up
 	@cargo clean
 .PHONY: clean
@@ -89,13 +96,16 @@ install:  ## Install overlap command into the directory same with cargo
 	@cargo install --path . --force
 .PHONY: install
 
-
 help:  ## Display this message
-	@grep -E '^[0-9a-z\:\\]+: ' $(MAKEFILE_LIST) | grep -E '  ## ' | \
-	  sed -e 's/\(\s|\(\s[0-9a-z\:\\]*\)*\)  /  /' | tr -d \\\\ | \
-	  awk 'BEGIN {FS = ":  ## "}; {printf "\033[38;05;222m%-13s\033[0m %s\n", $$1, $$2}' | \
+	@grep -E '^[0-9a-z\:\\]+: ' $(MAKEFILE_LIST) | \
+	  grep -E '  ## ' | \
+	  sed -e 's/\(\s|\(\s[0-9a-z\:\\]*\)*\)  /  /' | \
+	  tr -d \\\\ | \
+	  awk 'BEGIN {FS = ":  ## "};  \
+	       {printf "\033[38;05;222m%-17s\033[0m %s\n", $$1, $$2}' | \
 	  sort
 .PHONY: help
+# }}}
 
 .DEFAULT_GOAL = test\:all
 default: test\:all

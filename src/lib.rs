@@ -78,10 +78,10 @@ pub fn overlap(text: String, c: &Config) -> String {
             Ok(i) => {
                 let l = &mut lines[i];
                 l.up();
-            },
+            }
             Err(_) => {
                 lines.push(line);
-            },
+            }
         };
     }
 

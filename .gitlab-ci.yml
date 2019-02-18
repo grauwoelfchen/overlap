@@ -3,14 +3,14 @@ stages:
   - test
   - build
 
-.ci-tools: &ci-tools
-  image: grauwoelfchen/rust-ci-tools:nightly
+.vet-tools: &vet-tools
+  image: grauwoelfchen/rust-vet-tools:stable
   except:
     - tags
 
 check:
   stage: vet
-  <<: *ci-tools
+  <<: *vet-tools
   before_script:
     - rustc --version
     - cargo --version
@@ -20,7 +20,7 @@ check:
 
 format:
   stage: vet
-  <<: *ci-tools
+  <<: *vet-tools
   before_script:
     - rustc --version
     - cargo --version
@@ -31,7 +31,7 @@ format:
 
 lint:
   stage: vet
-  <<: *ci-tools
+  <<: *vet-tools
   before_script:
     - rustc --version
     - cargo --version
@@ -42,7 +42,7 @@ lint:
 
 test:
   stage: test
-  <<: *ci-tools
+  <<: *vet-tools
   before_script:
     - rustc --version
     - cargo --version
@@ -56,7 +56,7 @@ test:
 
 build:
   stage: build
-  image: grauwoelfchen/rust:latest
+  image: grauwoelfchen/rust:stable
   before_script:
     - rustc --version
     - cargo --version
@@ -70,7 +70,7 @@ build:
 
 release:
   stage: build
-  image: grauwoelfchen/rust:latest
+  image: grauwoelfchen/rust:stable
   before_script:
     - rustc --version
     - cargo --version

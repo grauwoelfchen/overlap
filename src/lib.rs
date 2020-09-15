@@ -34,7 +34,7 @@ pub fn read_file(file: &str) -> io::Result<String> {
     }
 
     let mut text = content.join("\n");
-    text.push_str("\n");
+    text.push('\n');
     Ok(text)
 }
 

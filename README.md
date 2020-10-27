@@ -98,7 +98,7 @@ Hoi!
 
 ```zsh
 # (optional)
-% .tools/setup-kcov
+% .tool/setup-kcov
 
 % make coverage
 ```
@@ -110,14 +110,14 @@ See `.gitlab-ci.yml`.
 
 
 ```zsh
-# install gitlab-runner into .tools
-% .tools/setup-gitlab-runner
+# install gitlab-runner into .tool
+% .tool/setup-gitlab-runner
 
 # prepare environment variables for CI via .env.ci
 % cp .env.ci.sample .env
 
 # e.g. test (see .gitlab-ci.yml)
-% .tools/ci-runner test
+% .tool/ci-runner test
 ```
 
 

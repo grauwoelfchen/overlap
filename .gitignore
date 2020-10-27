@@ -1,8 +1,8 @@
 /target
 /tmp
 
-/.tools/kcov
-/.tools/gitlab-runner
+/.tool/kcov
+/.tool/gitlab-runner
 
 # development
 *.txt

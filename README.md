@@ -120,6 +120,16 @@ See `.gitlab-ci.yml`.
 % .tool/ci-runner test
 ```
 
+## Release
+
+All notable released changes of this package will be documented in CHANGELOG
+file.
+
+### Unreleased commits
+
+[v0.0.2...master](
+https://gitlab.com/grauwoelfchen/overlap/compare/v0.0.2...master)
+
 
 ## License
 

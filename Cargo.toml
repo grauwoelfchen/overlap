@@ -14,7 +14,7 @@ categories = ["command-line-utilities", "text-processing"]
 license = "Apache-2.0"
 exclude = [
   "benches/*",
-  "tests/*",
+  "test/*",
   ".tool/*",
   ".cargo-husky/*",
   "/.clippy.toml",
@@ -34,6 +34,10 @@ path = "src/lib.rs"
 [[bin]]
 name = "overlap"
 path = "src/main.rs"
+
+[[test]]
+name = "integration"
+path = "test/integration_test.rs"
 
 [profile.release]
 panic = "abort"

@@ -100,7 +100,7 @@ pub fn overlap(text: String, c: &Config) -> String {
 }
 
 #[cfg(test)]
-mod tests {
+mod test {
     use super::*;
 
     #[test]
